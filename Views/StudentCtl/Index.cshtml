@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVCnewProject.Models.Student>
+
+<h2 class="text-center">Students List</h2>
+@Html.ActionLink("New Student", "Create", "Student", new { @class = "btn btn-primary" })
+<hr />
+@if (!Model.Any())
+{
+    <p class="text-danger">No Record Found!</p>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.Name)</th>
+                <th>@Html.DisplayNameFor(m => m.Address)</th>
+                <th>@Html.DisplayNameFor(m => m.Age)</th>
+                <th>@Html.DisplayNameFor(m => m.Email)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var std in Model)
+            {
+                using (Html.BeginForm("Delete", "StudentCtl", new { id = std.Id }))
+                {
+                    <tr>
+                        <td>@std.Name</td>
+                        <td>@std.Address</td>
+                        <td>@std.Age</td>
+                        <td>@std.Email</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = std.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = std.Id }) |
+                            @*@Html.ActionLink("Delete", "Delete", new { id = std.Id })*@
+                            <input type="submit" value="Delete" class="btn btn-link" onclick="confirm('Want to delete the data?')" />
+
+                        </td>
+
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+}

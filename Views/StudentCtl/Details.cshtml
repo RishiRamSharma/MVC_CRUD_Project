@@ -1,0 +1,27 @@
+﻿@model MVCnewProject.Models.Student
+
+@{ 
+    var email = Model.Email == null ? "No any email found!" : Model.Email;
+}
+<h2 class="text-center text-primary">Student Details</h2>
+
+ <table class="table table-bordered table-striped table-hover">
+     <thead>
+         <tr>
+             <th>@Html.DisplayNameFor(m => m.Name)</th>
+             <th>@Html.DisplayNameFor(m => m.Address)</th>
+             <th>@Html.DisplayNameFor(m => m.Age)</th>
+             <th>@Html.DisplayNameFor(m => m.Email)</th>
+         </tr>
+     </thead>
+     <tbody>
+         <tr>
+             <td>@Model.Name</td>
+             <td>@Model.Address</td>
+             <td>@Model.Age</td>
+             <td>@Model.Email</td>
+         </tr>
+     </tbody>
+ </table>
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id}) <br />
+@Html.ActionLink("Back to List","Index")
